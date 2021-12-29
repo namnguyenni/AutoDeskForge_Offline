@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>View 3d model cuc quan khi</title>
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+  <!-- The Viewer JS & CSS-->
+  <link rel="stylesheet" href="/SourceCode/style.min.css" type="text/css">
+
+  <script language="JavaScript" src="SourceCode/viewer3D.min.js"></script>
+  <script language="JavaScript" src="Assets/jquery-3.3.1.min.js"></script>
+
+
+</head>
+
+<body>
+  <div id="div1">hay qua di</div>
+  <div id="MyViewerDiv"></div>
+
+
+
+  <!-- Developer JS -->
+  <script>
+
+    Autodesk.Viewing.Initializer({ accessToken: '' }, async function () {
+    const viewer = new Autodesk.Viewing.GuiViewer3D(document.getElementById('MyViewerDiv'));
+    viewer.start();
+    viewer.setTheme('light-theme');
+    viewer.setEnvMapBackground(true);
+    viewer.setGroundReflection(true);
+    await viewer.loadExtension('Autodesk.glTF');
+
+
+    viewer.loadModel('models/model4/AK47.glb');
+  });
+
+  function removeElementsByClass(className){
+    const elements = document.getElementsByClassName(className);
+
+    while(elements.length > 0){
+    var classcount = $(elements[0]).attr('class'). split(/\s+/).length;
+    console.log(classcount)
+    if(classcount == 1)
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+}
+//removeElementsByClass('adsk-button-icon');
+$('#div1').remove();
+    
+  </script>
+
+
+
+</body>
+
+</html>
